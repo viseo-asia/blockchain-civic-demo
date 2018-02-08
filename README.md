@@ -4,7 +4,7 @@
 
 Blockchain web application authentication with [civic.com](civic.com)
 
-![Civic Architecutre](assets/images/civic-architecture.png)
+![Civic Architecutre](app/assets/images/civic-architecture.png)
 
 ## Prerequisites
 

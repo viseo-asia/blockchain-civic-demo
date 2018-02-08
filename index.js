@@ -4,7 +4,7 @@ const routes = require('./app/routes')
 // const path = require('path')
 const views = require('koa-views')
 const config = require('config')
-// serve = require('koa-static');
+const send = require('koa-send')
 
 const app = new Koa();
 const router = new Router()
@@ -21,6 +21,20 @@ app.use(async (ctx, next) => {
 // initialize render helper
 app.use(views(config.template.path, config.template.options));
 routes(app)
+
+// static assets: js/css/png etc
+app.use(async (ctx, next) => {
+    console.log(ctx.path)
+    if (ctx.path.match(/assets/)) {
+        try {
+            await send(ctx, '/app' + ctx.path)
+        } catch (e) {
+            //TODO error logging
+            console.log(e)
+            await next()
+        }
+    }
+})
 
 // 404
 //TODO check for and handle json response
