@@ -4,6 +4,7 @@
   "description": "Blockchain Authentication with Civic Demo",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "nyc mocha app/lib",
     "test-coverage": "nyc --reporter=html mocha app/lib"
   },
