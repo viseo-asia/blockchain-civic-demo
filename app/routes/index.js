@@ -19,7 +19,12 @@ module.exports = function (app) {
 		})
 
 		.get('/render/view', indexCtrl.view)
-	// .get('/view/:id', indexCtrl.test);
+		// .get('/view/:id', indexCtrl.test);
+
+		.get('/civic/:id', ctx => {
+			console.log(101, ctx.params.id)
+			ctx.body = indexCtrl.civic(ctx.params.id)
+		})
 
 	app
 		.use(router.routes())
