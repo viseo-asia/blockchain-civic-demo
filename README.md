@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/viseo-asia/blockchain-civic-demo.svg?branch=master)](https://travis-ci.org/viseo-asia/blockchain-civic-demo)
 
+[![Coverage Status](https://coveralls.io/repos/github/viseo-asia/blockchain-civic-demo/badge.svg?branch=master)](https://coveralls.io/github/viseo-asia/blockchain-civic-demo?branch=master)
+
 ## Overview
 
 Blockchain web application authentication with [civic.com](civic.com)
