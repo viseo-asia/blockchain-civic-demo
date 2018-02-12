@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "nyc mocha app/lib",
-    "test-coverage": "nyc --reporter=html mocha app/lib"
+    "coverage": "nyc --reporter=html mocha app/lib",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -28,9 +29,11 @@
     "koa-router": "^7.4.0",
     "koa-send": "^4.1.2",
     "koa-static": "^4.0.2",
-    "koa-views": "^6.1.3"
+    "koa-views": "^6.1.3",
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "mocha": "^5.0.0",
     "nyc": "^11.4.1"
   }

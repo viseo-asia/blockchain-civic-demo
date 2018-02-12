@@ -1,5 +1,7 @@
 # Blockchain Authentication with Civic Demo
 
+[![Build Status](https://travis-ci.org/viseo-asia/blockchain-civic-demo.svg?branch=master)](https://travis-ci.org/viseo-asia/blockchain-civic-demo)
+
 ## Overview
 
 Blockchain web application authentication with [civic.com](civic.com)
@@ -22,4 +24,4 @@ Install the Civic app on your mobile device.
 ## Test
 
 - `npm test`
-- `npm run test-coverage` (html reports in coverage/ dir)
+- `npm run coverage` (html reports in coverage/ dir)
