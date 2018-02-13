@@ -8,7 +8,7 @@ node {
     }
 
     stage('Test') {
-        def image = docker.image('node:8.9.3-alpine')
+        def image = docker.image('node:8.9.4')
         image.pull()
         image.inside {
             sh 'npm install'
