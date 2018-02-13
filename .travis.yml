@@ -6,7 +6,7 @@ env:
 before_script:
   - npm install
 script:
-  - npm test-coverage
+  - npm run test-coverage
   - npm run coveralls
   # - ./node_modules/jshint/bin/jshint lib/*.js
   # - ./node_modules/jshint/bin/jshint test/*.js
