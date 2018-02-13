@@ -6,5 +6,14 @@ node {
         sh "git rev-parse --short HEAD > .git/commit-id"
         commit_id = readfile(".git/commit-id").trim()
     }
+
+    stage('Test') {
+        def image = docker.image('node:8.9.3-alpine')
+        image.pull()
+        image.inside {
+            sh 'npm install'
+            sh 'npm test'
+        }
+    }
     
 }
