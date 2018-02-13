@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha app/lib",
-    "coverage": "nyc --reporter=html mocha app/lib",
+    "test-coverage": "nyc mocha app/lib",
+    "test-coverage-html": "nyc --reporter=html mocha app/lib",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {

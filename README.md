@@ -25,4 +25,5 @@ Install the Civic app on your mobile device.
 ## Test
 
 - `npm test`
-- `npm run coverage` (html reports in coverage/ dir)
+- `npm run test-coverage`
+- `npm run test-coverage-html` (html reports in coverage/ dir)
