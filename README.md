@@ -1,4 +1,4 @@
-# Blockchain Authentication with Civic Demo
+# Blockchain Decentralized ID (DID) Authentication Demo
 
 [![Build Status](https://travis-ci.org/viseo-asia/blockchain-civic-demo.svg?branch=master)](https://travis-ci.org/viseo-asia/blockchain-civic-demo)
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-Blockchain web application authentication with [civic.com](civic.com)
+Web application blockchain-based decentralized ID (DID) authentication with [civic.com](civic.com)
 
 ![Civic Architecutre](app/assets/images/civic-architecture.png)
 
@@ -21,7 +21,6 @@ Install the Civic app on your mobile device.
 3. `npm install`
 4. `npm start`
 5. Open [http://127.0.0.1:3000](http://127.0.0.1:3000) (use IP address not localhost)
-
 
 ## Test
 
