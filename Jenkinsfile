@@ -9,8 +9,7 @@ pipeline {
     stages {
         stage('Preparation') { 
             steps {
-                // git branch: 'master', url: 'https://github.com/viseo-asia/blockchain-civic-demo.git'
-                git scm
+                git branch: 'master', url: 'https://github.com/viseo-asia/blockchain-civic-demo.git'
                 script {
                     sh 'printenv'
                     sh 'git rev-parse HEAD > .git/commit-id'
