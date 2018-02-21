@@ -1,21 +1,21 @@
-FROM node:8.9.3-alpine
+FROM node:8.9.4-alpine
 
-RUN apk add --update --no-cache curl
+# RUN apk add --update --no-cache curl
 
 ENV APP_DIR=/srv/app
 ENV NODE_ENV=production
 
-
-#TODO : change to yarn installer - jenkins ci w/ docker throws errors with npm install, yarn is OK
-
-
-# NPM package cache
+# nodejs package cache
 COPY package.json /tmp/package.json
 COPY package-lock.json /tmp/package-lock.json
+COPY yarn.lock /tmp/yarn.lock
+
 RUN \
     cd /tmp && \
-    npm install --production && \
-    npm cache verify
+    # npm install --production && \
+    yarn install --production && \
+    # npm cache verify
+    yarn cache clean
 
 RUN \
   mkdir -p ${APP_DIR} && \
@@ -30,6 +30,7 @@ COPY .env ${APP_DIR}/.env
 COPY index.js ${APP_DIR}/index.js
 COPY package.json ${APP_DIR}/package.json
 COPY package-lock.json ${APP_DIR}/package-lock.json
+COPY yarn.lock ${APP_DIR}/yarn.lock
 
 RUN addgroup www-data
 RUN adduser -G www-data -D -H www-data

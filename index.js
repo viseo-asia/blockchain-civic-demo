@@ -1,12 +1,13 @@
-require('dotenv').config();
-
 const Koa = require('koa')
 const Router = require('koa-router')
 const routes = require('./app/routes')
 // const path = require('path')
 const views = require('koa-views')
-const config = require('config')
 const send = require('koa-send')
+
+// dotenv is used in local dev environment to load env vars from .env file - non local env uses Docker EE secrets
+require('dotenv').config()
+const config = require('./config/default')
 
 const app = new Koa();
 const router = new Router()
@@ -21,7 +22,7 @@ app.use(async (ctx, next) => {
 });
 
 // initialize render helper
-app.use(views(config.template.path, config.template.options));
+app.use(views(config.get('template').path, config.get('template').options))
 routes(app)
 
 // static assets: js/css/png etc
@@ -46,4 +47,4 @@ app.use(async ctx => {
     ctx.body = "Oops! Page Not Found"
 })
 
-app.listen(3000, console.log(`HTTP server listening on port ${config.server.port}...`))
+app.listen(config.get('server').port, console.log(`HTTP server listening on port ${config.get('server').port}...`))

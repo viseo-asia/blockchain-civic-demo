@@ -7,6 +7,7 @@ pipeline {
     }
     
     stages {
+
         stage('Preparation') { 
             steps {
                 git branch: 'master', url: 'https://github.com/viseo-asia/blockchain-civic-demo.git'
@@ -16,6 +17,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Build') {
             steps {
                 withDockerContainer(image: 'node:8.9.4-alpine') {
@@ -29,5 +31,7 @@ pipeline {
                 }
             }
         }
+
+        // https://stackoverflow.com/questions/42909439/using-waitforqualitygate-in-a-jenkins-declarative-pipeline
     }
 }

@@ -1,4 +1,4 @@
-const config = require('config')
+const config = require('../../config/default')
 const civicSip = require('civic-sip-api')
 
 const civic = require('../lib/civic')
