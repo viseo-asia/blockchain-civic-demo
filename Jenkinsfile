@@ -2,7 +2,8 @@ pipeline {
     agent any
     
     environment {
-        NODE_ENV = 'production'
+        // NODE_ENV is dev for testing first, will prune dev dependencies before deploy.
+        NODE_ENV = 'development'
     }
     
     stages {
@@ -35,6 +36,7 @@ pipeline {
             steps {
                 echo "Git commit ID: ${commit_id}"
                 script {
+                    sh 'yarn install --production'
                     sh 'docker build -t viseo-asia/civic-app .'
                     sh "docker tag viseo-asia/civic-app local.dtr/viseo/civic-app:${commit_id}"
                 }
