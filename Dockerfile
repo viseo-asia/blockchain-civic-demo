@@ -25,8 +25,7 @@ RUN \
 # Application setup
 COPY app ${APP_DIR}/bin
 COPY config ${APP_DIR}/public
-COPY test ${APP_DIR}/routes
-COPY .env ${APP_DIR}/.env
+# COPY test ${APP_DIR}/routes
 COPY index.js ${APP_DIR}/index.js
 COPY package.json ${APP_DIR}/package.json
 COPY package-lock.json ${APP_DIR}/package-lock.json
