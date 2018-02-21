@@ -24,8 +24,8 @@ RUN \
   cp -a /tmp/node_modules/ ${APP_DIR}
 
 # Application setup
-COPY app ${APP_DIR}/bin
-COPY config ${APP_DIR}/public
+COPY app ${APP_DIR}/app
+COPY config ${APP_DIR}/config
 # COPY test ${APP_DIR}/routes
 COPY index.js ${APP_DIR}/index.js
 COPY package.json ${APP_DIR}/package.json
