@@ -1,6 +1,7 @@
 FROM node:8.9.4-alpine
 
-# RUN apk add --update --no-cache curl
+# curl used for health checks by the docker EE platform
+RUN apk add --update --no-cache curl
 
 ENV APP_DIR=/srv/app
 ENV NODE_ENV=production
