@@ -18,7 +18,7 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Test') {
             steps {
                 withDockerContainer(image: 'node:8.9.4-alpine') {
                     sh 'yarn install'
@@ -29,6 +29,20 @@ pipeline {
                     echo "COMMIT ID: ${commit_id}"
                     sh 'npm test'
                 }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "COMMIT ID: ${commit_id}"
+                script {
+                    sh 'docker build -t viseo-asia/civic-app .'
+                    sh "docker tag viseo-asia/civic-app local.dtr/viseo/civic-app:${commit_id}"
+                }
+                withDockerRegistry(url: 'https://local.dtr', credentialsId: 'dtr-credentials') {
+                    sh "docker push local.dtr/viseo/civic-app:${commit_id}"
+                }
+
             }
         }
 
