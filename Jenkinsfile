@@ -36,8 +36,8 @@ pipeline {
             steps {
                 echo "Git commit ID: ${commit_id}"
                 script {
-                    sh 'docker build -t viseo-asia/civic-app .'
-                    sh "docker tag viseo-asia/civic-app local.dtr/viseo/civic-app:${commit_id}"
+                    sh 'docker build -t viseo/civic-app .'
+                    sh "docker tag viseo/civic-app local.dtr/viseo/civic-app:${commit_id}"
                 }
             }
         }
