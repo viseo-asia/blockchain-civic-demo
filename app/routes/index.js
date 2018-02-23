@@ -1,15 +1,20 @@
 const Router = require('koa-router')
 const router = new Router();
 
+const Lynx = require('lynx')
+const metrics = new Lynx('telegraf', 8125)
+
 module.exports = function (app) {
 
 	const indexCtrl = require('../controllers/index');
 
 	router
-		.get('/', indexCtrl.home)
-		// .get('/', (ctx, next) => {
-		// ctx.body = 'Hello World'
-		// })
+		// .get('/', indexCtrl.home)
+		.get('/', (ctx, next) => {
+			// ctx.body = 'Hello World'
+			metrics.increment('page.home')
+			return indexCtrl.home(ctx, next)
+		})
 
 		.get('/users', indexCtrl.index)
 
