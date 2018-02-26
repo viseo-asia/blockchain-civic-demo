@@ -24,6 +24,17 @@ Install the Civic app on your mobile device.
 
 ## Test
 
+## Unit tests
+
 - `npm test`
 - `npm run test-coverage`
 - `npm run test-coverage-html` (html reports in coverage/ dir)
+
+## Integration tests - End-to-End (e2e)
+
+Currently tests only localhost, needs a running local instance on port 3000.
+
+- `npm run e2e`
+
+## Performance tests
+
