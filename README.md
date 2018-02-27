@@ -36,5 +36,20 @@ Currently tests only localhost, needs a running local instance on port 3000.
 
 - `npm run e2e`
 
-## Performance tests
+## Performance/Stress testing with Gatling.
+
+- Install JAVA JRE: `apt-get install default-jre`
+- Download from [https://gatling.io/download/](https://gatling.io/download/)
+- Unzip and set GATLING_HOME env var to point to the unzipped folder:
+- Example: `export GATLING_HOME=~/Downloads/gatling-charts-highcharts-bundle-2.3.0/`
+- Execute performance/stress tests and generate HTML reports:
+- `cd blockchain-civic-demo`
+- `$GATLING_HOME/bin/gatling.sh -sf test/perf -rf test/perf-results`
+- Output screenshots:
+
+![Console](doc/images/gatling-console-output.png)
+
+![HTML](doc/images/gatling-html-output.png)
+
+
 
