@@ -9,7 +9,8 @@
     "test-coverage": "nyc mocha app/lib",
     "test-coverage-html": "nyc --reporter=html mocha app/lib",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "test-report": "./node_modules/.bin/nyc report --reporter=text-lcov > .nyc_output/coverage.lcov",
+    "ci-test-coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha app/lib",
+    "ci-test-report": "./node_modules/.bin/nyc report --reporter=text-lcov > .nyc_output/coverage.lcov",
     "e2e": "mocha test/e2e"
   },
   "repository": {
