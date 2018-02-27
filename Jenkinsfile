@@ -27,7 +27,26 @@ pipeline {
                         commit_id = readFile('.git/commit-id')
                     }
                     echo "COMMIT ID: ${commit_id}"
-                    sh 'npm test'
+                    sh 'npm run ci-test-coverage'
+                    sh 'npm run ci-test-report'
+                }
+                script {
+                    scannerHome = tool 'sonarqube';
+                }
+                withSonarQubeEnv('sonarqube') {
+                    script {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+        
+        stage("Quality Gate") {
+            steps {
+                script {
+                qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+                if (qg.status != 'OK') {
+                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
             }
         }
@@ -58,6 +77,5 @@ pipeline {
             }
         }
 
-        // https://stackoverflow.com/questions/42909439/using-waitforqualitygate-in-a-jenkins-declarative-pipeline
     }
 }
