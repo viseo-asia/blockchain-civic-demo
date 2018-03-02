@@ -56,9 +56,11 @@ pipeline {
             steps {
                 echo "Git commit ID: ${commit_id}"
                 script {
-                    sh 'docker build -t viseo/civic-app .'
-                    sh "docker tag viseo/civic-app local.dtr/viseo/civic-app:${commit_id}"
+                    // the ${commit_id} tag seems to chop off anything trailing, so we build and tag seperately
+                    sh "docker build -t viseo/civic-app ."
                     sh "docker tag viseo/civic-app local.dtr/viseo/civic-app:latest"
+                    sh "docker tag viseo/civic-app local.dtr/viseo/civic-app:${commit_id}"
+
                 }
             }
         }
@@ -66,6 +68,8 @@ pipeline {
         stage('Push') {
             steps {
                 withDockerRegistry(url: 'https://local.dtr', credentialsId: 'dtr-credentials') {
+                    // latest tag is not auto, so need to push twice - each layer is uploaded only once though (no double upload)
+                    sh "docker push local.dtr/viseo/civic-app:latest"
                     sh "docker push local.dtr/viseo/civic-app:${commit_id}"
                 }
             }
@@ -74,7 +78,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh "docker service update civic_web --detach=true --image local.dtr/viseo/civic-app:${commit_id}"
+                    sh "docker service update civic_web --detach=true --image local.dtr/viseo/civic-app:latest"
+                    // sh "docker service update civic_web --detach=true --image local.dtr/viseo/civic-app:${commit_id}"
                 }
             }
         }
