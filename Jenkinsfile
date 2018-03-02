@@ -58,6 +58,7 @@ pipeline {
                 script {
                     sh 'docker build -t viseo/civic-app .'
                     sh "docker tag viseo/civic-app local.dtr/viseo/civic-app:${commit_id}"
+                    sh "docker tag viseo/civic-app local.dtr/viseo/civic-app:latest"
                 }
             }
         }
