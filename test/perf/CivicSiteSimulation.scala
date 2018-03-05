@@ -16,7 +16,8 @@ class CivicSiteSimulation extends Simulation {
   // TODO:rudijs check if apiKey is null and throw/exit
 
 	//val httpProtocol = http.baseURL(System.getProperty("API_URL"))
-  val apiUrl = Option(System.getProperty("API_URL")).getOrElse("http://127.0.0.1:3000")
+  // val apiUrl = Option(System.getProperty("API_URL")).getOrElse("http://127.0.0.1:3000")
+  val apiUrl = Option(System.getenv("API_URL")).getOrElse("http://127.0.0.1:3000")
 
 	val httpProtocol = http.baseURL(apiUrl)
 
@@ -40,7 +41,7 @@ class CivicSiteSimulation extends Simulation {
     // ).protocols(httpProtocol)
     scenario1.inject(
      atOnceUsers(10),
-     rampUsers(10) over(5 seconds)).protocols(httpProtocol)
+     rampUsers(600) over(60 seconds)).protocols(httpProtocol)
   )
 
 }
