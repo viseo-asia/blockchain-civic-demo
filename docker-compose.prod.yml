@@ -1,0 +1,64 @@
+version: "3.1"
+
+services:
+
+  web:
+    image: local.dtr/viseo/civic-app:latest
+    deploy:
+      labels: 
+        - com.docker.ucp.mesh.http=external_route=http://civic.local,internal_port=3000
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 1s
+        failure_action: pause
+        monitor: 0s
+        # Docker ee 17.09 coming soon...
+        # order: start-first
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 200M
+      restart_policy:
+        condition: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "--output", "/dev/null", "http://localhost:3000"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+    # ports:
+        # Disable expose port 3000 directly to the web, use HTTP Routing Mesh (domain name resolution)
+      # - "3000:3000"
+    networks:
+      - ucp-hrm
+      - webnet
+      - tick_monitoring_net
+      # - logging_scalyr
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:601"
+    secrets:
+      - civic_app_id.json
+      - civic_app_secret.json
+      - civic_private_key.json
+
+secrets:
+  civic_app_id.json:
+    external: true
+  civic_app_secret.json:
+    external: true
+  civic_private_key.json:
+    external: true
+
+networks:
+  webnet:
+  ucp-hrm:
+    external:
+      name: ucp-hrm 
+  tick_monitoring_net:
+    external:
+      name: tick_monitoring_net
+  # logging_scalyr:
+    # external:
+      # name: logging_scalyr

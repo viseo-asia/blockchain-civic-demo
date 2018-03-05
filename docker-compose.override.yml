@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "5000:3000"
+    secrets:
+      - civic_app_id.json
+      - civic_app_secret.json
+      - civic_private_key.json
+
+secrets:
+  civic_app_id.json:
+    file: ./test/fixtures/secrets/civic_app_id.json
+  civic_app_secret.json:
+    file: ./test/fixtures/secrets/civic_app_secret.json
+  civic_private_key.json:
+    file: ./test/fixtures/secrets/civic_private_key.json
