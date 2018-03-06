@@ -86,7 +86,7 @@ Create Docker Stack:
 - Download the docker-compose.prod.yml file
 - `curl -o docker-compose-civic-app.yml https://raw.githubusercontent.com/viseo-asia/blockchain-civic-demo/master/docker-compose.prod.yml`
 - Deploy the stack
-- `docker stack deploy -c docker-compose.prod.yml civic`
+- `docker stack deploy -c docker-compose-civic-app.yml civic`
 
 The stack will be created, but the deployment will fail as we need to build and create the docker image and push it to the Docker Trusted Registry.
 
