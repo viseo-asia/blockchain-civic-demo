@@ -84,7 +84,7 @@ Create Docker Stack:
 
 - SSH onto the virtual machine
 - Download the docker-compose.prod.yml file
-- `wget https://raw.githubusercontent.com/viseo-asia/blockchain-civic-demo/master/docker-compose.prod.yml`
+- `curl -o docker-compose-civic-app.yml https://raw.githubusercontent.com/viseo-asia/blockchain-civic-demo/master/docker-compose.prod.yml`
 - Deploy the stack
 - `docker stack deploy -c docker-compose.prod.yml civic`
 
