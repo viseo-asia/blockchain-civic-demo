@@ -30,7 +30,7 @@ services:
         # Disable expose port 3000 directly to the web, use HTTP Routing Mesh (domain name resolution)
       # - "3000:3000"
     networks:
-      - ucp-hrm
+      - ucp-interlock
       - webnet
       - tick_monitoring_net
       # - logging_scalyr
@@ -53,9 +53,9 @@ secrets:
 
 networks:
   webnet:
-  ucp-hrm:
+  ucp-interlock:
     external:
-      name: ucp-hrm 
+      name: ucp-interlock
   tick_monitoring_net:
     external:
       name: tick_monitoring_net
